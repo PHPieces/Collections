@@ -11,7 +11,7 @@ class Collection implements \ArrayAccess
 
     private $items;
 
-    public function __construct($items = array())
+    public function __construct($items = [])
     {
         $this->items = $items;
     }

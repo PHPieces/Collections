@@ -9,11 +9,11 @@ class CollectionTest extends PHPUnit_Framework_TestCase
      */
     public function it_has_map_function()
     {
-        $collection = new Collection(array(1,2,3,4));
+        $collection = new Collection([1,2,3,4]);
 
         $result = $collection->map(function($x){ return $x * 2; });
 
-        $this->assertEquals(array(2,4,6,8), $result->toArray());
+        $this->assertEquals([2,4,6,8], $result->toArray());
     }
 
     /**
@@ -21,11 +21,11 @@ class CollectionTest extends PHPUnit_Framework_TestCase
      */
     public function it_filters_array()
     {
-        $collection = new Collection(array(1,2,3,4));
+        $collection = new Collection([1,2,3,4]);
 
         $result = $collection->filter(function($x) { return $x > 2; });
 
-        $this->assertEquals(array(3,4), array_values($result->toArray()));
+        $this->assertEquals([3,4], array_values($result->toArray()));
     }
 
     /**
@@ -33,7 +33,7 @@ class CollectionTest extends PHPUnit_Framework_TestCase
      */
     public function it_reduces_array()
     {
-        $collection = new Collection(array(1,2,3,4));
+        $collection = new Collection([1,2,3,4]);
 
         $result = $collection->reduce(function($carry, $item) {
             $carry += $item;
@@ -48,11 +48,11 @@ class CollectionTest extends PHPUnit_Framework_TestCase
      */
     public function it_gets_keys()
     {
-        $collection = new Collection(array('foo' => 1, 'bar' => 2));
+        $collection = new Collection(['foo' => 1, 'bar' => 2]);
 
         $result = $collection->keys();
 
-        $this->assertEquals(array('foo', 'bar'), $result->toArray());
+        $this->assertEquals(['foo', 'bar'], $result->toArray());
     }
 
     /**
@@ -60,7 +60,7 @@ class CollectionTest extends PHPUnit_Framework_TestCase
      */
     public function it_gets_count()
     {
-        $collection = new Collection(array(1,2,3,4));
+        $collection = new Collection([1,2,3,4]);
         
         $result = $collection->count();
         
@@ -72,7 +72,7 @@ class CollectionTest extends PHPUnit_Framework_TestCase
      */
     public function it_gets_average()
     {
-        $collection = new Collection(array(1,2,3,4));
+        $collection = new Collection([1,2,3,4]);
 
         $result = $collection->avg();
 
@@ -84,7 +84,7 @@ class CollectionTest extends PHPUnit_Framework_TestCase
      */
     public function it_has_object_property_access()
     {
-        $collection = new Collection(array('foo' => 1, 'bar' => 2));
+        $collection = new Collection(['foo' => 1, 'bar' => 2]);
 
         $this->assertEquals(1, $collection->foo);
 
@@ -98,11 +98,11 @@ class CollectionTest extends PHPUnit_Framework_TestCase
      */
     public function it_converts_to_json()
     {
-        $collection = new Collection(array('foo' => 'bar', 'baz' => 'bam'));
+        $collection = new Collection(['foo' => 'bar', 'baz' => 'bam']);
 
         $result = $collection->toJson();
 
-        $this->assertJsonStringEqualsJsonString(json_encode(array('foo' => 'bar', 'baz' => 'bam')), $result);
+        $this->assertJsonStringEqualsJsonString(json_encode(['foo' => 'bar', 'baz' => 'bam']), $result);
     }
 
     /**
@@ -110,7 +110,7 @@ class CollectionTest extends PHPUnit_Framework_TestCase
      */
     public function it_implements_ArrayAccess_interface()
     {
-        $collection = new Collection(array(1, 2, 3, 4));
+        $collection = new Collection([1, 2, 3, 4]);
 
         $this->assertTrue($collection instanceof ArrayAccess);
         
