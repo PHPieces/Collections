@@ -1,0 +1,22 @@
+{
+    "name": "phpieces/collections",
+    "description": "collection class that works in php 5.3",
+    "type": "library",
+    "require-dev": {
+        "phpunit/phpunit": "^5.5"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joseph Lyons",
+            "email": "jclyons52@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "PHPieces\\Collections\\": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "require": {}
+}
