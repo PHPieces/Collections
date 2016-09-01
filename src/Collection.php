@@ -4,8 +4,9 @@ namespace PHPieces\Collections;
 
 use PHPieces\Collections\Traits\ArrayAccessible;
 use PHPieces\Collections\Traits\ObjectAccess;
+use Traversable;
 
-class Collection implements \ArrayAccess
+class Collection implements \ArrayAccess, \IteratorAggregate
 {
     use ObjectAccess, ArrayAccessible;
 
@@ -59,5 +60,17 @@ class Collection implements \ArrayAccess
     public function toArray()
     {
         return $this->items;
+    }
+
+    /**
+     * Retrieve an external iterator
+     * @link http://php.net/manual/en/iteratoraggregate.getiterator.php
+     * @return Traversable An instance of an object implementing <b>Iterator</b> or
+     * <b>Traversable</b>
+     * @since 5.0.0
+     */
+    public function getIterator()
+    {
+        return new \ArrayIterator($this->items);
     }
 }

@@ -120,5 +120,23 @@ class CollectionTest extends PHPUnit_Framework_TestCase
         
         $this->assertEquals(5, $collection[0]);
     }
+
+    /**
+     * @test
+     */
+    public function it_is_iterable()
+    {
+        $collection = new Collection([1, 2]);
+
+        $res = [];
+
+        foreach ($collection as $num) {
+            $res[] = $num;
+        }
+
+        $this->assertEquals(1, $res[0]);
+
+        $this->assertEquals(2, $res[1]);
+    }
     
 }
