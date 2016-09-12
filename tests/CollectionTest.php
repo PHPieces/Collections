@@ -138,5 +138,167 @@ class CollectionTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals(2, $res[1]);
     }
+
+    /**
+     * @test
+     */
+    public function it_reverses_array()
+    {
+        $collection = new Collection([1,2,3,4]);
+
+        $res = $collection->reverse();
+
+        $this->assertEquals([4,3,2,1], $res->toArray());
+    }
+    
+    /**
+     * @test
+     */
+    public function it_gets_values()
+    {
+        $collection = new Collection(['foo' => 1, 'bar' => 2, 3]);
+        
+        $res = $collection->values();
+        
+        $this->assertEquals([1,2,3], $res->toArray());
+    }
+
+    /**
+     * @test
+     */
+    public function it_flips_array_values()
+    {
+        $collection = new Collection(['foo' => 1, 'bar' => 2, 3]);
+
+        $res = $collection->flip();
+
+        $this->assertEquals([1 => 'foo', 2 => 'bar', 3 => 0], $res->toArray());
+    }
+
+    /**
+     * @test
+     */
+    public function it_checks_if_key_exists()
+    {
+        $collection = new Collection(['foo' => 1, 'bar' => 2]);
+
+        $this->assertTrue($collection->has('foo'));
+    }
+
+    /**
+     * @test
+     */
+    public function it_gets_random_key()
+    {
+        $collection = new Collection(['foo' => 1, 'bar' => 2]);
+        
+        $res = $collection->random();
+        
+        $this->assertTrue($collection->has($res));
+    }
+
+    /**
+     * @test
+     */
+    public function it_gets_multiple_random_keys()
+    {
+        $collection = new Collection(['foo' => 1, 'bar' => 2, 'baz' => 3]);
+
+        $res = $collection->random(2);
+
+        $this->assertEquals(2, $res->count());
+
+        $this->assertTrue($collection->has($res[0]));
+
+        $this->assertTrue($collection->has($res[1]));
+    }
+    
+    /**
+     * @test
+     */
+    public function it_gets_unique_values()
+    {
+        $collection = new Collection([1,2,2,2,3,4,5,5]);
+
+        $res = $collection->unique();
+
+        $this->assertEquals([1,2,3,4,5], $res->values()->toArray());
+    }
+
+    /**
+     * @test
+     */
+    public function it_gets_array_intersect()
+    {
+        $collection = new Collection([1,2,3,4]);
+
+        $other = new Collection([3,4,5,6]);
+
+        $this->assertEquals([3,4], $collection->intersect($other)->values()->toArray());
+    }
+
+    /**
+     * @test
+     */
+    public function it_is_traversable()
+    {
+        $collection = new Collection([0,1,2,3]);
+
+        foreach ($collection as $index => $item) {
+            $this->assertEquals($index, $item);
+        }
+    }
+
+    /**
+     * @test
+     */
+    public function it_sets_offset()
+    {
+        $collection = new Collection();
+
+        $collection[] = 'bar';
+
+        $this->assertEquals('bar', $collection[0]);
+
+        $collection['foo'] = 'baz';
+
+        $this->assertEquals('baz', $collection['foo']);
+    }
+
+    /**
+     * @test
+     */
+    public function it_unsets_offset()
+    {
+        $collection = new Collection([1,2,3]);
+
+        unset($collection[0]);
+
+        $this->assertEquals(false, $collection->has(0));
+    }
+
+    /**
+     * @test
+     */
+    public function it_throws_error_if_not_given_array()
+    {
+        $this->setExpectedException(\Exception::class);
+
+        new Collection(1,2,3,4);
+    }
+    
+    /**
+     * @test
+     */
+    public function it_gets_array_diff()
+    {
+        $collection = new Collection([1,2,3,4]);
+        
+        $other = new Collection([3,4,5,6]);
+        
+        $res = $collection->diff($other);
+        
+        $this->assertEquals([1,2], $res->toArray());
+    }
     
 }
