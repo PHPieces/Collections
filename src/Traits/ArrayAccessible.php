@@ -32,7 +32,12 @@ trait ArrayAccessible
      */
     public function offsetGet($offset)
     {
-        return $this->items[$offset];
+        $item = $this->items[$offset];
+
+        if (is_array($item)) {
+            return new static($item);
+        }
+        return $item;
     }
 
     /**

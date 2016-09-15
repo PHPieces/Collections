@@ -116,4 +116,9 @@ class Collection implements \ArrayAccess, \IteratorAggregate
         }
         return new static(array_diff($this->items, $other));
     }
+    
+    public function chunk($size): Collection
+    {
+        return new static(array_chunk($this->items, $size));
+    }
 }

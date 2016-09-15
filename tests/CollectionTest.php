@@ -300,5 +300,19 @@ class CollectionTest extends PHPUnit_Framework_TestCase
         
         $this->assertEquals([1,2], $res->toArray());
     }
+
+    /**
+     * @test
+     */
+    public function it_chunks_array()
+    {
+        $collection = new Collection([1,2,3,4,5,6]);
+
+        $chunks = $collection->chunk(3);
+
+        $this->assertTrue($chunks->count() == 2);
+
+        $this->assertTrue($chunks[0]->count() == 3);
+    }
     
 }

@@ -6,7 +6,12 @@ trait ObjectAccess
 {
     public function __get($name)
     {
-        return $this->items[$name];
+        $item = $this->items[$name];
+
+        if (is_array($item)) {
+            return new static($item);
+        }
+        return $item;
     }
 
     public function __set($key, $value)
