@@ -3,14 +3,15 @@
 namespace PHPieces\Collections;
 
 use PHPieces\Collections\Traits\ArrayAccessible;
-use PHPieces\Collections\Traits\Iterable;
+use PHPieces\Collections\Traits\IterationTrait;
 use PHPieces\Collections\Traits\ObjectAccess;
 
 class Collection implements \ArrayAccess, \IteratorAggregate
 {
-    use ObjectAccess, ArrayAccessible, Iterable;
+    use ObjectAccess, ArrayAccessible, IterationTrait;
 
     private $items;
+
 
     public function __construct($items = [])
     {

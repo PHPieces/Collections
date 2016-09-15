@@ -2,7 +2,9 @@
 
 namespace PHPieces\Collections\Traits;
 
-trait Iterable
+use ArrayIterator;
+
+trait IterationTrait
 {
     /**
      * Retrieve an external iterator
@@ -11,8 +13,8 @@ trait Iterable
      * <b>Traversable</b>
      * @since 5.0.0
      */
-    public function getIterator(): \ArrayIterator
+    public function getIterator(): ArrayIterator
     {
-        return new \ArrayIterator($this->items);
+        return new ArrayIterator($this->items);
     }
 }
