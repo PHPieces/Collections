@@ -1,4 +1,5 @@
 vendor
 build
 .idea
+composer.lock
 .DS_Store
