@@ -6,7 +6,8 @@ use PHPieces\Collections\exceptions\UndefinedPropertyException;
 use ReflectionClass;
 
 /**
- * When extender, this class gives you getters and setters on all protected properties and prevents dynamic creation of attributes.
+ * When extender, this class gives you getters and setters on all
+ * protected properties and prevents dynamic creation of attributes.
  *
  * Class Model
  * @package PHPieces\Collections
@@ -36,7 +37,9 @@ class Model
     {
         $this->reflection = new \ReflectionClass(static::class);
         
-        $this->props = $this->reflection->getProperties(\ReflectionProperty::IS_PRIVATE | \ReflectionProperty::IS_PROTECTED);
+        $this->props = $this->reflection->getProperties(
+            \ReflectionProperty::IS_PRIVATE | \ReflectionProperty::IS_PROTECTED
+        );
         
         $this->methods = $this->reflection->getMethods();
     }

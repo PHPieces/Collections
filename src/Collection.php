@@ -64,7 +64,7 @@ class Collection implements \ArrayAccess, \IteratorAggregate
 
     /**
      * Return all the keys of the collection
-     * 
+     *
      * @return Collection
      */
     public function keys(): Collection
@@ -74,7 +74,7 @@ class Collection implements \ArrayAccess, \IteratorAggregate
 
     /**
      * Count the items in a collection
-     * 
+     *
      * @return int
      */
     public function count(): int
@@ -84,7 +84,7 @@ class Collection implements \ArrayAccess, \IteratorAggregate
 
     /**
      * get the sum of all items in a collection
-     * 
+     *
      * @return float
      */
     public function sum(): float
@@ -94,7 +94,7 @@ class Collection implements \ArrayAccess, \IteratorAggregate
 
     /**
      * get the average of a collection
-     * 
+     *
      * @return float
      */
     public function avg(): float
