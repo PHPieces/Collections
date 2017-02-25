@@ -24,6 +24,9 @@ class Collection implements \ArrayAccess, \IteratorAggregate
     }
 
     /**
+     * Applies the callback to the elements of the collection
+     * callback arguments item: $item
+     *
      * @param callable $callback
      * @return Collection
      */
@@ -33,6 +36,12 @@ class Collection implements \ArrayAccess, \IteratorAggregate
     }
 
     /**
+     * Iterates over each value in the <b>array</b>
+     * passing them to the <b>callback</b> function.
+     * If the <b>callback</b> function returns true, the
+     * current value from <b>array</b> is returned into
+     * the result array. Array keys are preserved.
+     *
      * @param callable $callback
      * @return Collection
      */
@@ -42,15 +51,20 @@ class Collection implements \ArrayAccess, \IteratorAggregate
     }
 
     /**
-     * @param callable $callback
+     * Iteratively reduce the array to a single value using a callback function
+     *
+     * @param  mixed callback ( mixed $carry , mixed $item ) $callback
+     * @param $initial
      * @return mixed
      */
-    public function reduce(callable $callback)
+    public function reduce(callable $callback, $initial)
     {
-        return array_reduce($this->items, $callback);
+        return array_reduce($this->items, $callback, $initial);
     }
 
     /**
+     * Return all the keys of the collection
+     * 
      * @return Collection
      */
     public function keys(): Collection
@@ -59,6 +73,8 @@ class Collection implements \ArrayAccess, \IteratorAggregate
     }
 
     /**
+     * Count the items in a collection
+     * 
      * @return int
      */
     public function count(): int
@@ -67,6 +83,8 @@ class Collection implements \ArrayAccess, \IteratorAggregate
     }
 
     /**
+     * get the sum of all items in a collection
+     * 
      * @return float
      */
     public function sum(): float
@@ -75,6 +93,8 @@ class Collection implements \ArrayAccess, \IteratorAggregate
     }
 
     /**
+     * get the average of a collection
+     * 
      * @return float
      */
     public function avg(): float
@@ -91,6 +111,7 @@ class Collection implements \ArrayAccess, \IteratorAggregate
     }
 
     /**
+     * Convert collection to plain array
      * @return array
      */
     public function toArray(): array

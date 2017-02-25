@@ -4,6 +4,10 @@ namespace PHPieces\Collections\Traits;
 
 trait ObjectAccess
 {
+    /**
+     * @param $name
+     * @return static
+     */
     public function __get($name)
     {
         $item = $this->items[$name];
@@ -14,6 +18,10 @@ trait ObjectAccess
         return $item;
     }
 
+    /**
+     * @param $key
+     * @param $value
+     */
     public function __set($key, $value)
     {
         $this->items[$key] = $value;

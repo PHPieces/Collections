@@ -5,6 +5,12 @@ namespace PHPieces\Collections;
 use PHPieces\Collections\exceptions\UndefinedPropertyException;
 use ReflectionClass;
 
+/**
+ * When extender, this class gives you getters and setters on all protected properties and prevents dynamic creation of attributes.
+ *
+ * Class Model
+ * @package PHPieces\Collections
+ */
 class Model
 {
     /**
@@ -41,7 +47,7 @@ class Model
     public function __get(string $name)
     {
         if (!$this->hasProperty($name)) {
-            return;
+            return null;
         }
         
         if ($method = $this->hasGetter($name)) {
