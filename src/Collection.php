@@ -57,7 +57,7 @@ class Collection implements \ArrayAccess, \IteratorAggregate
      * @param $initial
      * @return mixed
      */
-    public function reduce(callable $callback, $initial)
+    public function reduce(callable $callback, $initial = null)
     {
         return array_reduce($this->items, $callback, $initial);
     }
